@@ -1,0 +1,28 @@
+<% content_for :title, "Writings - Bryan Beshore" %>
+
+<div class="space-y-8">
+  <h1 class="text-2xl font-bold tracking-tight text-gray-900">Writings</h1>
+
+  <div class="space-y-10">
+    <% @posts.group_by { |p| p.date.year }.each do |year, posts| %>
+      <section>
+        <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4"><%= year %></h2>
+        <div class="space-y-6">
+          <% posts.each do |post| %>
+            <article>
+              <%= link_to post_path(post), class: "group block" do %>
+                <div class="flex items-baseline justify-between gap-4">
+                  <h3 class="text-base font-medium text-gray-900 group-hover:text-gray-600"><%= post.title %></h3>
+                  <time class="text-sm text-gray-400 whitespace-nowrap"><%= post.date.strftime("%b %-d") %></time>
+                </div>
+                <% if post.description.present? %>
+                  <p class="mt-1 text-sm text-gray-500"><%= post.description %></p>
+                <% end %>
+              <% end %>
+            </article>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+  </div>
+</div>

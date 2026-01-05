@@ -1,0 +1,17 @@
+<% content_for :title, "#{@post.title} - Bryan Beshore" %>
+<% content_for :description, @post.description if @post.description.present? %>
+
+<article>
+  <header class="mb-8">
+    <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl"><%= @post.title %></h1>
+    <time class="mt-2 block text-sm text-gray-500"><%= @post.date.strftime("%B %-d, %Y") %></time>
+  </header>
+
+  <div class="prose prose-gray max-w-none">
+    <%= @post.html_body %>
+  </div>
+
+  <footer class="mt-12 pt-8 border-t border-gray-100">
+    <%= link_to "&larr; Back to writings".html_safe, writings_path, class: "text-sm text-gray-500 hover:text-gray-900" %>
+  </footer>
+</article>

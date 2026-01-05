@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bryan Beshore</title>
+    <description>CTO, engineer, and startup builder.</description>
+    <link><%= root_url %></link>
+    <atom:link href="<%= feed_url(format: :xml) %>" rel="self" type="application/rss+xml"/>
+    <% @posts.each do |post| %>
+      <item>
+        <title><%= post.title %></title>
+        <description><%= post.description || truncate(strip_tags(post.html_body), length: 200) %></description>
+        <pubDate><%= post.date.to_datetime.rfc2822 %></pubDate>
+        <link><%= post_url(post) %></link>
+        <guid><%= post_url(post) %></guid>
+      </item>
+    <% end %>
+  </channel>
+</rss>

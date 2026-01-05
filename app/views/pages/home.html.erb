@@ -1,0 +1,30 @@
+<% content_for :title, "Bryan Beshore" %>
+
+<div class="space-y-12">
+  <section class="text-center py-12">
+    <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Bryan Beshore</h1>
+    <p class="mt-4 text-lg text-gray-600">CTO, engineer, and startup builder.</p>
+  </section>
+
+  <% if @recent_posts.any? %>
+    <section>
+      <h2 class="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-6">Recent Writings</h2>
+      <div class="space-y-8">
+        <% @recent_posts.each do |post| %>
+          <article>
+            <%= link_to post_path(post), class: "group block" do %>
+              <h3 class="text-lg font-medium text-gray-900 group-hover:text-gray-600"><%= post.title %></h3>
+              <time class="text-sm text-gray-500"><%= post.date.strftime("%B %-d, %Y") %></time>
+              <% if post.description.present? %>
+                <p class="mt-2 text-gray-600"><%= post.description %></p>
+              <% end %>
+            <% end %>
+          </article>
+        <% end %>
+      </div>
+      <div class="mt-8">
+        <%= link_to "View all writings", writings_path, class: "text-sm font-medium text-gray-900 hover:text-gray-600" %>
+      </div>
+    </section>
+  <% end %>
+</div>
